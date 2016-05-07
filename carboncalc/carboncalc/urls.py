@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^jumbo/', views.web.jumbotest),
     url(r'^biomass/', views.web.biomass),
     url(r'^api/biomass', views.api.biomasscalc),
+    url(r'^api/bmasstoCO2', views.api.biomasstoCO2req),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

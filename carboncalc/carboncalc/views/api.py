@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from biomass import biomass_calc
+from growth import biomasstoCO2
 import sqlite3
 import json
 
@@ -74,3 +75,33 @@ def biomasscalc(request):
             return Response({'errors': ['Unknown input format']})
             
 # POST [{"spec": "ACRU", "region": "NoCalC", "dbh": 2.8}, {"spec": "ACRU", "region": "NoCalC", "dbh": 4.1}]
+
+@api_view(['GET', 'POST'])
+@parser_classes((JSONParser,))
+def biomasstoCO2req(request):
+    if request.method == 'GET':
+        try:
+            biomass = request.query_params['biomass']
+            CO2 = biomasstoCO2(float(biomass))
+            return Response({'biomass': biomass, 'CO2': CO2, 'errors': []})
+        except:
+            return Response({'errors': ['CO2 calculation error']})
+    elif request.method == 'POST':
+        if type(request.data) is list:
+            outlist = []          
+            for item in request.data:
+                try:
+                    biomass = item['biomass']
+                    CO2 = biomasstoCO2(float(biomass))
+                    outlist.append({'biomass': biomass, 'CO2': CO2, 'errors': []})
+                except:
+                    outlist.append({'errors': ['CO2 calculation error']})
+            return Response(outlist)
+        elif type(request.data) is dict:
+            try:
+                biomass = request.query_params['biomass']
+                CO2 = biomasstoCO2(float(biomass))
+                return Response({'biomass': biomass, 'CO2': CO2, 'errors': []})
+            except:
+                return Response({'errors': ['CO2 calculation error']}) 
+ #       pass
