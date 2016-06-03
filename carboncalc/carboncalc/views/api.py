@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from biomass import biomass_calc
-from growth import biomasstoCO2
+from growth import biomasstoCO2, inv_age_calc, age_calc2, biomass_diff2
 import sqlite3
 import json
 
@@ -95,13 +95,215 @@ def biomasstoCO2req(request):
                     CO2 = biomasstoCO2(float(biomass))
                     outlist.append({'biomass': biomass, 'CO2': CO2, 'errors': []})
                 except:
-                    outlist.append({'errors': ['CO2 calculation error']})
+                    outlist.append({'errors': ['CO2 calculaaation error']})
             return Response(outlist)
         elif type(request.data) is dict:
             try:
-                biomass = request.query_params['biomass']
+                biomass = request.data['biomass']
                 CO2 = biomasstoCO2(float(biomass))
                 return Response({'biomass': biomass, 'CO2': CO2, 'errors': []})
             except:
-                return Response({'errors': ['CO2 calculation error']}) 
+                return Response({'errors': ['CO2 calcccculation error']}) 
  #       pass
+ 
+@api_view(['GET', 'POST'])
+@parser_classes((JSONParser,))
+def invagecalc(request):
+    dbconn = sqlite3.connect(UrbForDB)
+    if request.method == 'GET':
+        dbconn = sqlite3.connect(UrbForDB)
+        try:
+            species = request.query_params['spec']
+            region = request.query_params['region']
+            age = float(request.query_params['age'])
+            comptype = request.query_params['comptype']
+            (currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
+            return Response({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+            #return Response({'currval': currval, 'eqtype': eqtype, 'appsmin': appsmin, 'appsmax': appsmax})
+        except:
+            return Response({'errors': ['Inverse age calculation error']})
+    elif request.method == 'POST':
+        if type(request.data) is list:
+            outlist = []          
+            for item in request.data:
+                try:
+                    species = item['spec']
+                    region = item['region']
+                    age = float(item['age'])
+                    comptype = item['comptype']
+                    (currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
+                    outlist.append({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+                except:
+                    outlist.append({'errors': ['Inverse age calculation error']})
+            return Response(outlist)
+        elif type(request.data) is dict:
+            try:
+                species = request.data['spec']
+                region = request.data['region']
+                age = float(request.data['age'])
+                comptype = request.data['comptype']
+                (currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
+                return Response({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+            except:
+                return Response({'errors': ['Inverse age calculation error']}) 
+ #       pass
+ 
+@api_view(['GET', 'POST'])
+@parser_classes((JSONParser,))
+def agecalc(request):
+    dbconn = sqlite3.connect(UrbForDB)
+    if request.method == 'GET':
+        dbconn = sqlite3.connect(UrbForDB)
+        try:
+            species = request.query_params['spec']
+            region = request.query_params['region']
+            dbh = float(request.query_params['dbh'])
+            ht = float(request.query_params['ht'])
+            comptype = request.query_params['comptype']
+            if 'rounded' in request.query_params:
+                rounded = request.query_params['rounded']
+            else:
+                rounded = False
+            if 'lowerbound' in request.query_params:
+                lowerbound = request.query_params['lowerbound']
+            else:
+                lowerbound = 0
+            if 'upperbound' in request.query_params:
+                upperbound = request.query_params['upperbound']   
+            else: 
+                upperbound = 100
+            
+            age = age_calc2(dbconn, species, region, dbh, ht, rounded, lowerbound, upperbound, comptype)
+            return Response({'age': age})
+            #return Response({'currval': currval, 'eqtype': eqtype, 'appsmin': appsmin, 'appsmax': appsmax})
+        except:
+            return Response({'errors': ['Age calculation error']})
+    elif request.method == 'POST':
+        if type(request.data) is list:
+            outlist = []          
+            for item in request.data:
+                try:
+                    species = item['spec']
+                    region = item['region']
+                    dbh = float(item['dbh'])
+                    ht = float(item['ht'])
+                    comptype = item['comptype']
+                    if 'rounded' in item:
+                        rounded = item['rounded']
+                    else:
+                        rounded = False
+                    if 'lowerbound' in item:
+                        lowerbound = item['lowerbound']
+                    else:
+                        lowerbound = 0
+                    if 'upperbound' in item:
+                        upperbound = item['upperbound']   
+                    else: 
+                        upperbound = 100
+                    age = age_calc2(dbconn, species, region, dbh, ht, rounded, lowerbound, upperbound, comptype)
+                    outlist.append({'age': age})
+                except:
+                    outlist.append({'errors': ['Age calculation error']})
+            return Response(outlist)
+        elif type(request.data) is dict:
+            try:
+                species = request.data['spec']
+                region = request.data['region']
+                dbh = float(request.data['dbh'])
+                ht = float(request.data['ht'])
+                comptype = request.data['comptype']
+                if 'rounded' in request.data:
+                    rounded = request.data['rounded']
+                else:
+                    rounded = False
+                if 'lowerbound' in request.data:
+                    lowerbound = request.data['lowerbound']
+                else:
+                    lowerbound = 0
+                if 'upperbound' in request.data:
+                    upperbound = request.data['upperbound']   
+                else: 
+                    upperbound = 100
+                age = age_calc2(dbconn, species, region, dbh, ht, rounded, lowerbound, upperbound, comptype)
+                return Response({'age': age})
+            except:
+                return Response({'errors': ['Age calculation error']}) 
+                
+
+@api_view(['GET', 'POST'])
+@parser_classes((JSONParser,))
+def biomassdiff(request):
+    dbconn = sqlite3.connect(UrbForDB)
+    if request.method == 'GET':
+        dbconn = sqlite3.connect(UrbForDB)
+        try:
+            species = request.query_params['spec']
+            region = request.query_params['region']
+            dbh = float(request.query_params['dbh'])
+            ht = float(request.query_params['ht'])
+            if 'rounded' in request.query_params:
+                rounded = request.query_params['rounded']
+            else:
+                rounded = False
+            if 'lowerbound' in request.query_params:
+                lowerbound = request.query_params['lowerbound']
+            else:
+                lowerbound = 0
+            if 'upperbound' in request.query_params:
+                upperbound = request.query_params['upperbound']   
+            else: 
+                upperbound = 100
+            
+            (biomass, carbon, co2) = biomass_diff2(dbconn, species, region, dbh, ht, rounded, lowerbound, upperbound)
+            return Response({'biomass': biomass, 'carbon': carbon, 'co2': co2})
+            #return Response({'currval': currval, 'eqtype': eqtype, 'appsmin': appsmin, 'appsmax': appsmax})
+        except:
+            return Response({'errors': ['Growth calculation error']})
+    elif request.method == 'POST':
+        if type(request.data) is list:
+            outlist = []          
+            for item in request.data:
+                try:
+                    species = item['spec']
+                    region = item['region']
+                    dbh = float(item['dbh'])
+                    ht = float(item['ht'])
+                    if 'rounded' in item:
+                        rounded = item['rounded']
+                    else:
+                        rounded = False
+                    if 'lowerbound' in item:
+                        lowerbound = item['lowerbound']
+                    else:
+                        lowerbound = 0
+                    if 'upperbound' in item:
+                        upperbound = item['upperbound']   
+                    else: 
+                        upperbound = 100
+                    (biomass, carbon, co2) = biomass_diff2(dbconn, species, region, dbh, ht, rounded, lowerbound, upperbound)
+                    outlist.append({'biomass': biomass, 'carbon': carbon, 'co2': co2})
+                except:
+                    outlist.append({'errors': ['Growth calculation error']})
+            return Response(outlist)
+        elif type(request.data) is dict:
+            try:
+                species = request.data['spec']
+                region = request.data['region']
+                dbh = float(request.data['dbh'])
+                ht = float(request.data['ht'])
+                if 'rounded' in request.data:
+                    rounded = request.data['rounded']
+                else:
+                    rounded = False
+                if 'lowerbound' in request.data:
+                    lowerbound = request.data['lowerbound']
+                else:
+                    lowerbound = 0
+                if 'upperbound' in request.data:
+                    upperbound = request.data['upperbound']   
+                else: 
+                    upperbound = 100
+                (biomass, carbon, co2) = biomass_diff2(dbconn, species, region, dbh, ht, rounded, lowerbound, upperbound)
+                return Response({'biomass': biomass, 'carbon': carbon, 'co2': co2})
+            except:
+                return Response({'errors': ['Growth calculation error']}) 

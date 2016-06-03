@@ -446,9 +446,9 @@ def biomass_diff2(dbconn, speccode, region, dbh, ht, rounded=False, lower_bound=
     else:
         return (curr_biomass[0]-prev_biomass[0], curr_biomass[1]-prev_biomass[1], curr_biomass[2]-prev_biomass[2])
 
-def inv_age_calc(dbconn, speccode, region, age):
+def inv_age_calc(dbconn, speccode, region, age, comptype):
     """Compute dbh or height given age."""
-    (eqn, eqtype, eqstr, a, b, c, d, e, AppsMin, AppsMax) = growth_calc_eqn2(dbconn, speccode, region)
+    (eqn, eqtype, eqstr, a, b, c, d, e, AppsMin, AppsMax) = growth_calc_eqn2(dbconn, speccode, region, comptype)
     currval = eqn(age, a, b, c, d, e)
     return (currval, eqtype, AppsMin, AppsMax)
     

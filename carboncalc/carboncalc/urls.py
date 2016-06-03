@@ -24,5 +24,8 @@ urlpatterns = [
     url(r'^biomass/', views.web.biomass),
     url(r'^api/biomass', views.api.biomasscalc),
     url(r'^api/bmasstoCO2', views.api.biomasstoCO2req),
+    url(r'^api/invagecalc', views.api.invagecalc),
+    url(r'^api/agecalc', views.api.agecalc),
+    url(r'^api/growth', views.api.biomassdiff),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
