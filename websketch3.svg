@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:ns0="http://sodipodi.sourceforge.net/DTD/inkex-0.dtd"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="websketch3.svg"
+   inkscape:version="0.48.3.1 r9886"
+   version="1.1"
+   id="svg2"
+   height="900"
+   width="1600"
+   inkscape:export-filename="/home/adh/UrbanForests/WebCalculator/urbantreecc/websketch3.png"
+   inkscape:export-xdpi="72"
+   inkscape:export-ydpi="72">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.1035814"
+     inkscape:cx="641.68129"
+     inkscape:cy="736.00652"
+     inkscape:document-units="px"
+     inkscape:current-layer="svg2"
+     showgrid="false"
+     inkscape:window-width="1786"
+     inkscape:window-height="1005"
+     inkscape:window-x="79"
+     inkscape:window-y="35"
+     inkscape:window-maximized="0" />
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path4354"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1LendN"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1LendN"
+       style="overflow:visible;">
+      <path
+         id="path4981"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="stroke:#00cece;stroke-width:1.0pt;fill:#00cece;fill-rule:evenodd"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1LendNy"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1LendNy"
+       style="overflow:visible;">
+      <path
+         id="path4046"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#0000b4;stroke-width:1.0pt;fill:#0000b4"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1LendNy"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1LendNy-6"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4046-9"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#0000b4;fill-rule:evenodd;stroke:#0000b4;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1LendNy"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1LendNy-2"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4046-0"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill:#0000b4;fill-rule:evenodd;stroke:#0000b4;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1LendNyc"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1LendNyc"
+       style="overflow:visible;">
+      <path
+         id="path4726"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="stroke:#00cccb;stroke-width:1.0pt;fill:#00cccb;fill-rule:evenodd"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-152.36218)">
+    <text
+       xml:space="preserve"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="254.38896"
+       y="258.8421"
+       id="text2985"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan2987"
+         x="254.38896"
+         y="258.8421">Urban Forestry Carbon Calculator</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2989"
+       style="fill:black;fill-opacity:1;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;font-family:Ubuntu;font-style:normal;font-weight:normal;font-size:36px;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:100%;-inkscape-font-specification:Ubuntu;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion2991"><rect
+           id="rect2993"
+           width="562.25739"
+           height="41.916363"
+           x="401.81891"
+           y="6.7478786" /></flowRegion><flowPara
+         id="flowPara2995" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="56.370274"
+       y="1009.0004"
+       id="text3016"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan3018"
+         x="56.370274"
+         y="1009.0004"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Ubuntu;-inkscape-font-specification:Ubuntu">Information Center for the Environment, UC Davis</tspan><tspan
+         sodipodi:role="line"
+         x="56.370274"
+         y="1025.0004"
+         id="tspan3020"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Ubuntu;-inkscape-font-specification:Ubuntu">USFS Pacific Southwest Research Station, Davis CA</tspan></text>
+  </g>
+  <ns0:tables
+     count="1">
+    <ns0:table
+       columns="12"
+       rows="12"
+       table-id="inkscape-table0" />
+  </ns0:tables>
+  <rect
+     style="opacity:0.06451613;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.6428135;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect4293"
+     width="149.58733"
+     height="17.492712"
+     x="50.080772"
+     y="122.96973"
+     ry="3.4693663" />
+  <rect
+     style="opacity:0.23963132;fill:none;stroke:#000000;stroke-width:0.60900003;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect4038"
+     width="913.98602"
+     height="686.48297"
+     x="26.823502"
+     y="140.99423"
+     rx="5.750061"
+     ry="5.750061" />
+  <rect
+     style="opacity:0.23963132;fill:none;stroke:#000000;stroke-width:0.60832769;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect4040"
+     width="521.56812"
+     height="688.93311"
+     x="977.56763"
+     y="140.34386"
+     rx="5.750061"
+     ry="5.7373719" />
+  <text
+     xml:space="preserve"
+     style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="1034.7596"
+     y="201.73045"
+     id="text4042"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan4044"
+       x="1034.7596"
+       y="201.73045">Introduction</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="1038.0406"
+     y="388.53967"
+     id="text4046"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan4048"
+       x="1038.0406"
+       y="388.53967">Tool Use</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="1043.1895"
+     y="230.53232"
+     id="text4050"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan4052"
+       x="1043.1895"
+       y="230.53232">This web tool is an outgrowth of work analyzing the climate benefits of </tspan><tspan
+       sodipodi:role="line"
+       x="1043.1895"
+       y="242.53232"
+       id="tspan4054">California's urban trees. Ut vitae enim eleifend, aliquam massa vel, porta purus. </tspan><tspan
+       sodipodi:role="line"
+       x="1043.1895"
+       y="254.53232"
+       id="tspan4056">Quisque accumsan est mi, quis pharetra ligula vestibulum eu. Nam ut massa </tspan><tspan
+       sodipodi:role="line"
+       x="1043.1895"
+       y="266.53232"
+       id="tspan4058">dolor. Morbi et arcu a orci consectetur venenatis quis id mi. Fusce congue efficitur </tspan><tspan
+       sodipodi:role="line"
+       x="1043.1895"
+       y="278.53232"
+       id="tspan4060">justo, sed molestie tellus eleifend a. Nam condimentum a nulla ut iaculis. </tspan><tspan
+       sodipodi:role="line"
+       x="1043.1895"
+       y="290.53232"
+       id="tspan4062">Donec dolor lectus, dignissim ac blandit vel, porta id lectus. Aliquam at turpis </tspan><tspan
+       sodipodi:role="line"
+       x="1043.1895"
+       y="302.53232"
+       id="tspan4064">sit amet elit feugiat interdum. Quisque ut ante tellus. Suspendisse vestibulum </tspan><tspan
+       sodipodi:role="line"
+       x="1043.1895"
+       y="314.53232"
+       id="tspan4066">faucibus aliquet. Praesent faucibus placerat diam id efficitur. Integer velit </tspan><tspan
+       sodipodi:role="line"
+       x="1043.1895"
+       y="326.53232"
+       id="tspan4068">quam, auctor id congue id, auctor in dui. </tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="1170.3391"
+     y="476.40186"
+     id="text4070"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan4072"
+       x="1170.3391"
+       y="476.40186" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="1042.9541"
+     y="418.53098"
+     id="text4050-2"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="418.53098"
+       id="tspan4054-5">This tool allows you to either directly enter tree data into a table or upload it</tspan><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="430.53098"
+       id="tspan4121">from a standard CSV file.  Ut vitae enim eleifend, aliquam massa vel, porta purus. </tspan><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="442.53101"
+       id="tspan4056-6">Quisque accumsan est mi, quis pharetra ligula vestibulum eu. Nam ut massa </tspan><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="454.53101"
+       id="tspan4058-1">dolor. Morbi et arcu a orci consectetur venenatis quis id mi. Fusce congue efficitur </tspan><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="466.53101"
+       id="tspan4060-7">justo, sed molestie tellus eleifend a. Nam condimentum a nulla ut iaculis. </tspan><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="478.53101"
+       id="tspan4062-4">Donec dolor lectus, dignissim ac blandit vel, porta id lectus. Aliquam at turpis </tspan><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="490.53101"
+       id="tspan4064-3">sit amet elit feugiat interdum. Quisque ut ante tellus. Suspendisse vestibulum </tspan><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="502.53101"
+       id="tspan4066-3">faucibus aliquet. Praesent faucibus placerat diam id efficitur. Integer velit </tspan><tspan
+       sodipodi:role="line"
+       x="1042.9541"
+       y="514.53101"
+       id="tspan4068-1">quam, auctor id congue id, auctor in dui. </tspan></text>
+  <path
+     sodipodi:type="arc"
+     style="opacity:0.23963132;fill:#dedede;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.60900003;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="path3201-4"
+     sodipodi:cx="174.8495"
+     sodipodi:cy="561.72583"
+     sodipodi:rx="6.9542413"
+     sodipodi:ry="6.45751"
+     d="m 181.80374,561.72583 a 6.9542413,6.45751 0 1 1 -13.90848,0 6.9542413,6.45751 0 1 1 13.90848,0 z"
+     transform="translate(-71.077896,63.191371)" />
+  <path
+     transform="translate(-74.633333,118.26377)"
+     sodipodi:type="arc"
+     style="opacity:0.23963132;fill:none;stroke:#000000;stroke-width:0.60900003;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="path3201-0-6"
+     sodipodi:cx="174.8495"
+     sodipodi:cy="561.72583"
+     sodipodi:rx="6.9542413"
+     sodipodi:ry="6.45751"
+     d="m 181.80374,561.72583 a 6.9542413,6.45751 0 1 1 -13.90848,0 6.9542413,6.45751 0 1 1 13.90848,0 z" />
+  <text
+     xml:space="preserve"
+     style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="124.85921"
+     y="626.70129"
+     id="text3991-5"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan6540">Single tree biomass and</tspan><tspan
+       sodipodi:role="line"
+       id="tspan6542">carbon over time</tspan></text>
+  <rect
+     style="opacity:0.23963132;fill:none;stroke:#000000;stroke-width:1.19929945;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect4025-2"
+     width="241.79405"
+     height="245.73566"
+     x="77.923592"
+     y="563.9436"
+     rx="8.3508949"
+     ry="15.354388" />
+  <text
+     xml:space="preserve"
+     style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="143.32745"
+     y="586.59784"
+     id="text4177"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan4179"
+       x="143.32745"
+       y="586.59784">Graph Options</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="80.279991"
+     y="137.69217"
+     id="text4297"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan4299"
+       x="80.279991"
+       y="137.69217">Data Tables</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="269.3605"
+     y="137.34007"
+     id="text4319"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan4321"
+       x="269.3605"
+       y="137.34007">Future Values</tspan></text>
+  <rect
+     style="opacity:0.06451613;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.6428135;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect4293-2-3"
+     width="149.58733"
+     height="17.492712"
+     x="412.16785"
+     y="124.01634"
+     ry="3.4693663" />
+  <text
+     xml:space="preserve"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="467.59573"
+     y="136.63586"
+     id="text4341"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan4343"
+       x="467.59573"
+       y="136.63586">Graphs</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="1040.9918"
+     y="771.31976"
+     id="text4042-6"
+     sodipodi:linespacing="100%"><tspan
+       y="771.31976"
+       x="1040.9918"
+       id="tspan5469"
+       sodipodi:role="line">Species Information</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="1043.218"
+     y="538.83057"
+     id="text4050-2-5"
+     sodipodi:linespacing="100%"><tspan
+       y="538.83057"
+       x="1043.218"
+       id="tspan5437"
+       sodipodi:role="line">Ut vitae enim eleifend, aliquam massa vel, porta purus. </tspan><tspan
+       y="550.83057"
+       x="1043.218"
+       id="tspan5439"
+       sodipodi:role="line">Quisque accumsan est mi, quis pharetra ligula vestibulum eu. Nam ut massa </tspan><tspan
+       y="562.83057"
+       x="1043.218"
+       id="tspan5441"
+       sodipodi:role="line">dolor. Morbi et arcu a orci consectetur venenatis quis id mi. Fusce congue efficitur </tspan><tspan
+       y="574.83057"
+       x="1043.218"
+       id="tspan5443"
+       sodipodi:role="line">justo, sed molestie tellus eleifend a. Nam condimentum a nulla ut iaculis. </tspan><tspan
+       y="586.83057"
+       x="1043.218"
+       id="tspan5445"
+       sodipodi:role="line">Donec dolor lectus, dignissim ac blandit vel, porta id lectus. Aliquam at turpis </tspan><tspan
+       y="598.83057"
+       x="1043.218"
+       id="tspan5447"
+       sodipodi:role="line">sit amet elit feugiat interdum. Quisque ut ante tellus. Suspendisse vestibulum </tspan><tspan
+       y="610.83057"
+       x="1043.218"
+       id="tspan5449"
+       sodipodi:role="line">faucibus aliquet. Praesent faucibus placerat diam id efficitur. Integer velit </tspan><tspan
+       y="622.83057"
+       x="1043.218"
+       id="tspan5451"
+       sodipodi:role="line">quam, auctor id congue id, auctor in dui. </tspan><tspan
+       y="634.83057"
+       x="1043.218"
+       id="tspan5453"
+       sodipodi:role="line" /><tspan
+       y="646.83057"
+       x="1043.218"
+       id="tspan5455"
+       sodipodi:role="line">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas </tspan><tspan
+       y="658.83057"
+       x="1043.218"
+       id="tspan5457"
+       sodipodi:role="line">cursus tempor diam, quis commodo nisl lobortis ut. </tspan><tspan
+       y="670.83057"
+       x="1043.218"
+       id="tspan5459"
+       sodipodi:role="line">Quisque mattis risus sed erat euismod, sit amet </tspan><tspan
+       y="682.83057"
+       x="1043.218"
+       id="tspan5461"
+       sodipodi:role="line">tristique urna dapibus. Curabitur ut odio vel nibh tristique facilisis. </tspan><tspan
+       y="694.83057"
+       x="1043.218"
+       id="tspan5463"
+       sodipodi:role="line">Nunc mollis lectus et nulla facilisis, a condimentum elit dapibus.</tspan><tspan
+       y="706.83057"
+       x="1043.218"
+       id="tspan5465"
+       sodipodi:role="line"> Phasellus id ornare eros. Nulla lacinia nulla eget </tspan><tspan
+       y="718.83057"
+       x="1043.218"
+       id="tspan5467"
+       sodipodi:role="line">sem vestibulum scelerisque. Curabitur gravida enim vitae</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="1047.2015"
+     y="794.60583"
+     id="text4050-2-5-8"
+     sodipodi:linespacing="100%"><tspan
+       y="794.60583"
+       x="1047.2015"
+       id="tspan5537"
+       sodipodi:role="line">Quisque mattis risus sed erat euismod, sit amet </tspan><tspan
+       y="806.60583"
+       x="1047.2015"
+       id="tspan5539"
+       sodipodi:role="line">tristique urna dapibus. Curabitur ut odio vel nibh tristique facilisis. </tspan><tspan
+       y="818.60583"
+       x="1047.2015"
+       id="tspan5541"
+       sodipodi:role="line" /></text>
+  <rect
+     ry="0.10368224"
+     rx="5.750061"
+     y="180.95735"
+     x="993.91211"
+     height="633.3949"
+     width="21.909887"
+     id="rect5543"
+     style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.60900003;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+  <rect
+     transform="scale(-1,1)"
+     style="opacity:0.23963132;fill:#dedede;fill-opacity:1;stroke:#000000;stroke-width:1.01669598;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect12554-1"
+     width="17.237064"
+     height="320.92429"
+     x="-1013.0751"
+     y="182.813"
+     rx="8.4030685"
+     ry="10.966162" />
+  <rect
+     style="opacity:0.06451613;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.64236891;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect4293-2-3-2"
+     width="149.38048"
+     height="17.492712"
+     x="239.96898"
+     y="124.29002"
+     ry="3.4693663" />
+  <rect
+     ry="1.9365788"
+     y="137.84662"
+     x="411.90802"
+     height="4.8055367"
+     width="151.43105"
+     id="rect5600"
+     style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#dcdcdc;stroke-width:0.66306669;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0;stroke-dasharray:none;stroke-dashoffset:0" />
+  <path
+     transform="translate(-75.595539,176.07499)"
+     sodipodi:type="arc"
+     style="opacity:0.23963132;fill:none;stroke:#000000;stroke-width:0.60900003;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="path3201-0-6-0"
+     sodipodi:cx="174.8495"
+     sodipodi:cy="561.72583"
+     sodipodi:rx="6.9542413"
+     sodipodi:ry="6.45751"
+     d="m 181.80374,561.72583 a 6.9542413,6.45751 0 1 1 -13.90848,0 6.9542413,6.45751 0 1 1 13.90848,0 z" />
+  <text
+     xml:space="preserve"
+     style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="122.97636"
+     y="682.8548"
+     id="text3991-5-2"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan6506">Single tree building </tspan><tspan
+       sodipodi:role="line"
+       id="tspan6508">energy effects over time</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="121.16409"
+     y="742.6601"
+     id="text3991-5-0"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan6534">Multiple tree biomass</tspan><tspan
+       sodipodi:role="line"
+       id="tspan6536">over time by species</tspan><tspan
+       sodipodi:role="line"
+       id="tspan6538">(stacked barchart)</tspan></text>
+  <rect
+     style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#160016;stroke-width:0.60923331999999997;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+     id="rect6544"
+     width="789.24854"
+     height="315.62592"
+     x="86.989502"
+     y="180.52432" />
+  <text
+     xml:space="preserve"
+     style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="460.70746"
+     y="514.80652"
+     id="text3991-5-5"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan6570"
+       x="460.70746"
+       y="514.80652">Years</tspan></text>
+  <path
+     style="fill:none;stroke:#008200;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 119.61057,462.33406 c 55.61294,-85.95991 131.71466,-120.73692 176.54875,-143.39754 2.64647,-1.33761 3.77323,-2.4911 3.77323,-2.4911 35.61529,-25.07944 45.73605,-36.19946 106.9246,-51.65002 46.21317,-16.91462 188.47726,-16.83732 282.71589,-21.74737 l 106.01845,-4.53071"
+     id="path6574"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cscccc" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008500;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="34.033321"
+     y="216.78111"
+     id="text3991-5-5-5"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan6597"
+       x="34.033321"
+       y="216.78111">Biomass</tspan></text>
+  <path
+     style="fill:none;stroke:#970000;stroke-width:0.76487433999999999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 119.61057,464.59941 c 55.61294,-50.28936 131.71466,-70.63505 176.54875,-83.89225 2.64647,-0.78255 3.77323,-1.45738 3.77323,-1.45738 35.61529,-14.67229 45.73605,-21.17786 106.9246,-30.21695 46.21317,-9.8956 188.47726,-9.85038 282.71589,-12.72292 l 106.01845,-2.65061"
+     id="path6574-1"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cscccc" />
+  <text
+     xml:space="preserve"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#970000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+     x="885.10822"
+     y="212.04654"
+     id="text3991-5-5-5-3"
+     sodipodi:linespacing="100%"><tspan
+       sodipodi:role="line"
+       id="tspan6638">Carbon</tspan></text>
+</svg>
