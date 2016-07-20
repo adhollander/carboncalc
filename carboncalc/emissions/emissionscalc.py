@@ -13,14 +13,15 @@ def energycalc(spcode, climatezone, dbh_orig, height, azimuth, distance, vintage
     lu_conversion_climate = float(lu_conversion_climate)
     eqpt_cooling_potential = float(eqpt_cooling_potential)
     eqpt_heating_potential = float(eqpt_heating_potential)
-#    import ipdb; ipdb.set_trace()
     
     palmlist = [palm.sp_code for palm in Palms.objects.all()]
+
     if spcode in palmlist:
         dbh_calc = height
     else:
         dbh_calc = dbh_orig
-        
+    import ipdb; ipdb.set_trace()
+
     try:
         dbh_lookup_class_min = DbhClassesInterp.objects.filter(Q(midlowfake__lte=dbh_calc) & Q(midhighfake__gt=dbh_calc))[0].class_low
         dbh_lookup_class_max = DbhClassesInterp.objects.filter(Q(midlowfake__lte=dbh_calc) & Q(midhighfake__gt=dbh_calc))[0].class_high
