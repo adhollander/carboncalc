@@ -20,7 +20,7 @@ def energycalc(spcode, climatezone, dbh_orig, height, azimuth, distance, vintage
         dbh_calc = height
     else:
         dbh_calc = dbh_orig
-    import ipdb; ipdb.set_trace()
+#    import ipdb; ipdb.set_trace()
 
     try:
         dbh_lookup_class_min = DbhClassesInterp.objects.filter(Q(midlowfake__lte=dbh_calc) & Q(midhighfake__gt=dbh_calc))[0].class_low
@@ -43,90 +43,58 @@ def energycalc(spcode, climatezone, dbh_orig, height, azimuth, distance, vintage
             vintage_lookup_class = "post1980"
         
 #        import ipdb; ipdb.set_trace()
+# lookup all cooling energy reduction values (values are in "energy_reduction") #
+# for each tree, there will be a climate value (corresponding to clim in the building.lookup.class)
+# for any tree within 60ft of a building, there will also be a shade value (corresponding to adj, near, or far in the building lookup class)
+    
         
-        #q1 = Q(cz=climatezone) & Q(benefit_type="cool") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_min) & Q(azimuth=azimuth_lookup_class) & Q(dist="Clim") & Q(vintage=vintage_lookup_class)
-        #try:
-            #cooling_climate_low = Energylong2.objects.filter(q1)[0].energy_reduction
-        #except IndexError:
-            #cooling_climate_low = 0 # set to 0 per lines 219-226 in avoided_emissions_calculator.R
-            
-        #q1 = Q(cz=climatezone) & Q(benefit_type="cool") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_max) & Q(azimuth=azimuth_lookup_class) & Q(dist="Clim") & Q(vintage=vintage_lookup_class)
-        #try:
-            #cooling_climate_high = Energylong2.objects.filter(q1)[0].energy_reduction
-        #except IndexError:
-            #cooling_climate_high = 0
-            
-        #q1 = Q(cz=climatezone) & Q(benefit_type="cool") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_min) & Q(azimuth=azimuth_lookup_class) & Q(dist=building_lookup_class) & Q(vintage=vintage_lookup_class)
-        #try:
-            #cooling_shade_low = Energylong2.objects.filter(q1)[0].energy_reduction
-        #except IndexError:
-            #cooling_shade_low = 0
-            
-        #q1 = Q(cz=climatezone) & Q(benefit_type="cool") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_max) & Q(azimuth=azimuth_lookup_class) & Q(dist=building_lookup_class) & Q(vintage=vintage_lookup_class)
-        #try:
-            #cooling_shade_high = Energylong2.objects.filter(q1)[0].energy_reduction
-        #except IndexError:
-            #cooling_shade_high = 0
-            
-        #q1 = Q(cz=climatezone) & Q(benefit_type="heat") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_min) & Q(azimuth=azimuth_lookup_class) & Q(dist="Clim") & Q(vintage=vintage_lookup_class)
-        #try:
-            #heating_climate_low = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
-        #except IndexError:
-            #heating_climate_low = 0
-            
-        #q1 = Q(cz=climatezone) & Q(benefit_type="heat") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_max) & Q(azimuth=azimuth_lookup_class) & Q(dist="Clim") & Q(vintage=vintage_lookup_class)
-        #try:
-            #heating_climate_high = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
-        #except IndexError:
-            #heating_climate_high = 0
-            
-        #q1 = Q(cz=climatezone) & Q(benefit_type="heat") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_min) & Q(azimuth=azimuth_lookup_class) & Q(dist=building_lookup_class) & Q(vintage=vintage_lookup_class)
-        #try:
-            #heating_shade_low = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
-        #except IndexError:
-            #heating_shade_low = 0
-            
-        #q1 = Q(cz=climatezone) & Q(benefit_type="heat") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_max) & Q(azimuth=azimuth_lookup_class) & Q(dist=building_lookup_class) & Q(vintage=vintage_lookup_class)
-        #try:
-            #heating_shade_high = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
-        #except IndexError:
-            #heating_shade_high = 0
-    
-    # version that uses large-scoped exception handling...
-    
-  # lookup all cooling energy reduction values (values are in "energy_reduction") #
-  # for each tree, there will be a climate value (corresponding to clim in the building.lookup.class)
-  # for any tree within 60ft of a building, there will also be a shade value (corresponding to adj, near, or far in the building lookup class)
         q1 = Q(cz=climatezone) & Q(benefit_type="cool") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_min) & Q(azimuth=azimuth_lookup_class) & Q(dist="Clim") & Q(vintage=vintage_lookup_class)
-        cooling_climate_low = Energylong2.objects.filter(q1)[0].energy_reduction
-    
+        try:
+            cooling_climate_low = Energylong2.objects.filter(q1)[0].energy_reduction
+        except IndexError:
+            cooling_climate_low = 0 # set to 0 per lines 219-226 in avoided_emissions_calculator.R
             
         q1 = Q(cz=climatezone) & Q(benefit_type="cool") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_max) & Q(azimuth=azimuth_lookup_class) & Q(dist="Clim") & Q(vintage=vintage_lookup_class)
-        cooling_climate_high = Energylong2.objects.filter(q1)[0].energy_reduction
-    
+        try:
+            cooling_climate_high = Energylong2.objects.filter(q1)[0].energy_reduction
+        except IndexError:
+            cooling_climate_high = 0
             
         q1 = Q(cz=climatezone) & Q(benefit_type="cool") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_min) & Q(azimuth=azimuth_lookup_class) & Q(dist=building_lookup_class) & Q(vintage=vintage_lookup_class)
-        cooling_shade_low = Energylong2.objects.filter(q1)[0].energy_reduction
-    
+        try:
+            cooling_shade_low = Energylong2.objects.filter(q1)[0].energy_reduction
+        except IndexError:
+            cooling_shade_low = 0
             
         q1 = Q(cz=climatezone) & Q(benefit_type="cool") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_max) & Q(azimuth=azimuth_lookup_class) & Q(dist=building_lookup_class) & Q(vintage=vintage_lookup_class)
-        cooling_shade_high = Energylong2.objects.filter(q1)[0].energy_reduction
-    
+        try:
+            cooling_shade_high = Energylong2.objects.filter(q1)[0].energy_reduction
+        except IndexError:
+            cooling_shade_high = 0
             
         q1 = Q(cz=climatezone) & Q(benefit_type="heat") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_min) & Q(azimuth=azimuth_lookup_class) & Q(dist="Clim") & Q(vintage=vintage_lookup_class)
-        heating_climate_low = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
-    
+        try:
+            heating_climate_low = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
+        except IndexError:
+            heating_climate_low = 0
             
         q1 = Q(cz=climatezone) & Q(benefit_type="heat") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_max) & Q(azimuth=azimuth_lookup_class) & Q(dist="Clim") & Q(vintage=vintage_lookup_class)
-        heating_climate_high = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
-    
+        try:
+            heating_climate_high = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
+        except IndexError:
+            heating_climate_high = 0
             
         q1 = Q(cz=climatezone) & Q(benefit_type="heat") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_min) & Q(azimuth=azimuth_lookup_class) & Q(dist=building_lookup_class) & Q(vintage=vintage_lookup_class)
-        heating_shade_low = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
-    
+        try:
+            heating_shade_low = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
+        except IndexError:
+            heating_shade_low = 0
             
         q1 = Q(cz=climatezone) & Q(benefit_type="heat") & Q(species=spcode) & Q(dbh_class=dbh_lookup_class_max) & Q(azimuth=azimuth_lookup_class) & Q(dist=building_lookup_class) & Q(vintage=vintage_lookup_class)
-        heating_shade_high = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
+        try:
+            heating_shade_high = Energylong2.objects.filter(q1)[0].energy_reduction * 0.001
+        except IndexError:
+            heating_shade_high = 0
     
         
         if spcode in palmlist:
