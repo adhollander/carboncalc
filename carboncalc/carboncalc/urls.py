@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^api/invagecalc', views.api.invagecalc),
     url(r'^api/agecalc', views.api.agecalc),
     url(r'^api/growth', views.api.biomassdiff),
+    url(r'^api/avoided', views.api.avoidedemissions),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

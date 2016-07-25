@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from biomass import biomass_calc
 from growth import biomasstoCO2, inv_age_calc, age_calc2, biomass_diff2
+from emissions.emissionscalc import energycalc
 import sqlite3
 import json
 
@@ -320,3 +321,70 @@ def biomassdiff(request):
                 return Response({'biomass': biomass, 'carbon': carbon, 'co2': co2})
             except:
                 return Response({'errors': ['Growth calculation error']}) 
+
+@api_view(['GET', 'POST'])
+@parser_classes((JSONParser,))
+def avoidedemissions(request):
+    if request.method == "GET":
+        try:
+            species = request.query_params['spec']
+            region = altregion(request.query_params['region'])
+            dbh = float(request.query_params['dbh'])
+            ht = float(request.query_params['ht'])
+            azimuth = request.query_params['azimuth']
+            distance = request.query_params['dist']
+            vintage = request.query_params['vintage']
+            shade_reduction = request.query_params['shadereduc']
+            lu_conversion_shade = request.query_params['luconvshade']
+            lu_conversion_climate = request.query_params['luconvclim']
+            eqpt_cooling_potential = request.query_params['eqcoolpot']
+            eqpt_heating_potential = request.query_params['eqheatpot']
+            r = energycalc(species, region, dbh, ht, azimuth, distance, vintage, shade_reduction, lu_conversion_shade, lu_conversion_climate, eqpt_cooling_potential, eqpt_heating_potential)
+            return Response({'spec': r[0], 'region': r[1], 'dbh': r[2], 'maxdbh': r[4], 'ht': r[5], 'dist': r[6], 'buildclass': r[7], 
+            'azimuthclass': r[8], 'vintageclass': r[9], 'efemisfactor': r[10], 'cooltotalctcc': r[11], 'cooltotal': r[12], 'heattotalctcc': r[13], 'heattotal': r[14], 'allcoolemisctcc': r[15], 'allcoolemis': r[16], 'allheatemisctcc': r[17], 'allheatemis': r[18], 'allemisctcc': r[19], 'allemis': r[20]})        
+        except:
+            return Response({'errors': ['Avoided emissions calculation error']})
+    
+    elif request.method == "POST":
+        if type(request.data) is list:
+            outlist = []          
+            for item in request.data:
+                try:
+                    species = item['spec']
+                    region = altregion(item['region'])
+                    dbh = float(item['dbh'])
+                    ht = float(item['ht'])
+                    azimuth = item['azimuth']
+                    distance = item['dist']
+                    vintage = item['vintage']
+                    shade_reduction = item['shadereduc']
+                    lu_conversion_shade = item['luconvshade']
+                    lu_conversion_climate = item['luconvclim']
+                    eqpt_cooling_potential = item['eqcoolpot']
+                    eqpt_heating_potential = item['eqheatpot']
+                    r = energycalc(species, region, dbh, ht, azimuth, distance, vintage, shade_reduction, lu_conversion_shade, lu_conversion_climate, eqpt_cooling_potential, eqpt_heating_potential)
+                    outlist.append({'spec': r[0], 'region': r[1], 'dbh': r[2], 'maxdbh': r[4], 'ht': r[5], 'dist': r[6], 'buildclass': r[7], 
+            'azimuthclass': r[8], 'vintageclass': r[9], 'efemisfactor': r[10], 'cooltotalctcc': r[11], 'cooltotal': r[12], 'heattotalctcc': r[13], 'heattotal': r[14], 'allcoolemisctcc': r[15], 'allcoolemis': r[16], 'allheatemisctcc': r[17], 'allheatemis': r[18], 'allemisctcc': r[19], 'allemis': r[20]})
+                except:
+                    outlist.append({'errors': ['Avoided emissions calculation error']})
+            return Response(outlist)
+        elif type(request.data) is dict:
+            try:
+                species = request.data['spec']
+                region = altregion(request.data['region'])
+                dbh = float(request.data['dbh'])
+                ht = float(request.data['ht'])
+                azimuth = request.data['azimuth']
+                distance = request.data['dist']
+                vintage = request.data['vintage']
+                shade_reduction = request.data['shadereduc']
+                lu_conversion_shade = request.data['luconvshade']
+                lu_conversion_climate = request.data['luconvclim']
+                eqpt_cooling_potential = request.data['eqcoolpot']
+                eqpt_heating_potential = request.data['eqheatpot']
+                r = energycalc(species, region, dbh, ht, azimuth, distance, vintage, shade_reduction, lu_conversion_shade, lu_conversion_climate, eqpt_cooling_potential, eqpt_heating_potential)
+                return Response({'spec': r[0], 'region': r[1], 'dbh': r[2], 'maxdbh': r[4], 'ht': r[5], 'dist': r[6], 'buildclass': r[7], 
+            'azimuthclass': r[8], 'vintageclass': r[9], 'efemisfactor': r[10], 'cooltotalctcc': r[11], 'cooltotal': r[12], 'heattotalctcc': r[13], 'heattotal': r[14], 'allcoolemisctcc': r[15], 'allcoolemis': r[16], 'allheatemisctcc': r[17], 'allheatemis': r[18], 'allemisctcc': r[19], 'allemis': r[20]})
+            except:
+                return Response({'errors': ['Avoided emissions calculation error']}) 
+

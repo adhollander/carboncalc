@@ -18,3 +18,5 @@ def testrun():
         outwriter.writerow(energyresult)
     outfile.close()
 
+
+## http://localhost:8000/api/avoided?spec=WARO&region=SoCalC&dbh=18.05512786&ht=37.72966&azimuth=85&dist=28&vintage=1954&shadereduc=0.85&luconvshade=1&luconvclim=1&eqcoolpot=0.3029&eqheatpot=0.479
