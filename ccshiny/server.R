@@ -58,4 +58,12 @@ shinyServer(function(input, output, session) {
     
   })
   
+  output$download_table <- downloadHandler(
+    filename = function() {
+           paste('treedata-', Sys.Date(), '.csv', sep='')
+        },
+         content = function(file) {
+           write.csv(data(), file)
+         }
+  )
 })

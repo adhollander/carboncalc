@@ -13,7 +13,8 @@ shinyUI(fluidPage(
   # Application title
   titlePanel("Urban Forestry Carbon Calculator"),
   verticalLayout(
-    rHandsontableOutput("hot", width=900))
+    rHandsontableOutput("hot", width=900)),
+    downloadButton("download_table", "Download Table")
     
   ))
   # Sidebar with a slider input for number of bins
