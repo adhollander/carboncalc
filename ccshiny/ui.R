@@ -15,8 +15,8 @@ shinyUI(fluidPage(
   verticalLayout(
     rHandsontableOutput("hot", width=900)),
     br(),
-    downloadButton("download_table", "Download Table")
-    
+    downloadButton("download_table", "Download Table"),
+    actionButton("calc_results", "Calculate!")
   ))
   # Sidebar with a slider input for number of bins
 #   sidebarLayout(

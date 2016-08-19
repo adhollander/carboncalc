@@ -24,7 +24,7 @@ biomassq <- function(spec, region, dbh, ht) {
 shinyServer(function(input, output, session) {
   values = reactiveValues()
   
-  data = reactive({
+  data = eventReactive(input$calc_results, {
     if (!is.null(input$hot)) {
       DF = hot_to_r(input$hot)
     } else {
@@ -33,19 +33,31 @@ shinyServer(function(input, output, session) {
                         dbh = rep(5,10), height= rep(4,10), biomass=rep(NA,10), carbon=rep(NA,10), co2=rep(NA,10),
                         stringsAsFactors = F)
       else
-        DF = values[["DF"]]
+        DF <- values[["DF"]]
     }
-    
     biomassd <- biomassq(DF$species, DF$region, DF$dbh, DF$height)
     DF$biomass <- biomassd$biomass
     DF$carbon <- biomassd$carbon
     DF$co2 <- biomassd$co2
-    values[["DF"]] = DF
+    values[["DF"]] <- DF
     DF
-  })
+  }, ignoreNULL = FALSE)
+  
+#   calc_results <- eventReactive(input$calc_results,
+#     {
+#     DF <- values[["DF"]]
+#     biomassd <- biomassq(DF$species, DF$region, DF$dbh, DF$height)
+#     DF$biomass <- biomassd$biomass
+#     DF$carbon <- biomassd$carbon
+#     DF$co2 <- biomassd$co2
+#     values[["DF"]] <- DF
+#     DF
+#   }, ignoreNULL = FALSE)
 
   output$hot <- renderRHandsontable({
-    DF = data()
+    DF <- data()
+    #DF <- calc_results()
+    #DF <- values[["DF"]]
 #     biomassd <- biomassq(DF$species, DF$region, DF$dbh, DF$height)
 #     DF$biomass <- biomassd$biomass
 #     DF$carbon <- biomassd$carbon
