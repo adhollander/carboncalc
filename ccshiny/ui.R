@@ -14,6 +14,7 @@ shinyUI(fluidPage(
   titlePanel("Urban Forestry Carbon Calculator"),
   verticalLayout(
     rHandsontableOutput("hot", width=900)),
+    br(),
     downloadButton("download_table", "Download Table")
     
   ))

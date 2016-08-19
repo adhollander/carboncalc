@@ -36,17 +36,20 @@ shinyServer(function(input, output, session) {
         DF = values[["DF"]]
     }
     
-    
+    biomassd <- biomassq(DF$species, DF$region, DF$dbh, DF$height)
+    DF$biomass <- biomassd$biomass
+    DF$carbon <- biomassd$carbon
+    DF$co2 <- biomassd$co2
     values[["DF"]] = DF
     DF
   })
 
   output$hot <- renderRHandsontable({
     DF = data()
-    biomassd <- biomassq(DF$species, DF$region, DF$dbh, DF$height)
-    DF$biomass <- biomassd$biomass
-    DF$carbon <- biomassd$carbon
-    DF$co2 <- biomassd$co2
+#     biomassd <- biomassq(DF$species, DF$region, DF$dbh, DF$height)
+#     DF$biomass <- biomassd$biomass
+#     DF$carbon <- biomassd$carbon
+#     DF$co2 <- biomassd$co2
     if (!is.null(DF))
       #rhandsontable(DF, useTypes = as.logical(input$useType), stretchH = "all")
      rhandsontable(DF, useTypes = FALSE, stretchH = "all") %>%
@@ -63,7 +66,7 @@ shinyServer(function(input, output, session) {
            paste('treedata-', Sys.Date(), '.csv', sep='')
         },
          content = function(file) {
-           write.csv(data(), file)
+           write.csv(data(), file, row.names=FALSE)
          }
   )
 })
