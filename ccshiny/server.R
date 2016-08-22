@@ -22,9 +22,28 @@ biomassq <- function(spec, region, dbh, ht) {
   
 
 shinyServer(function(input, output, session) {
-  values = reactiveValues()
+  values <- reactiveValues()
   
-  data = eventReactive(input$calc_results, {
+  observeEvent(input$uploadedsheet, {
+    fuploaded <- input$uploadedsheet[1,"datapath"]
+    if(!is.null(fuploaded)) {
+      fdf <- read.csv(fuploaded)
+      treedf <- data.frame(treeid = numeric(), species = character(), region = character(),
+                           dbh = numeric(), height = numeric(), biomass = numeric(), carbon = numeric(), co2 = numeric(),
+                           stringsAsFactors = F)
+      treedfnames <- names(treedf)
+      treedf <- rbind(treedf, fdf[,1:5])
+      nacol <- rep(NA, nrow(treedf))
+      treedf <- cbind(treedf, biomass=nacol, carbon=nacol, co2=nacol )
+#      names(treedf) <- treedfnames
+      values[["DF"]] <- treedf
+    }
+  }, ignoreNULL=FALSE)
+  
+  observeEvent(input$calc_results, {
+  #data <- eventReactive(input$calc_results, {
+ # data <- eventReactive(catcher(), {
+      
     if (!is.null(input$hot)) {
       DF = hot_to_r(input$hot)
     } else {
@@ -40,7 +59,7 @@ shinyServer(function(input, output, session) {
     DF$carbon <- biomassd$carbon
     DF$co2 <- biomassd$co2
     values[["DF"]] <- DF
-    DF
+   # DF
   }, ignoreNULL = FALSE)
   
 #   calc_results <- eventReactive(input$calc_results,
@@ -55,9 +74,9 @@ shinyServer(function(input, output, session) {
 #   }, ignoreNULL = FALSE)
 
   output$hot <- renderRHandsontable({
-    DF <- data()
+    #DF <- data()
     #DF <- calc_results()
-    #DF <- values[["DF"]]
+    DF <- values[["DF"]]
 #     biomassd <- biomassq(DF$species, DF$region, DF$dbh, DF$height)
 #     DF$biomass <- biomassd$biomass
 #     DF$carbon <- biomassd$carbon
@@ -78,7 +97,8 @@ shinyServer(function(input, output, session) {
            paste('treedata-', Sys.Date(), '.csv', sep='')
         },
          content = function(file) {
-           write.csv(data(), file, row.names=FALSE)
+           #write.csv(data(), file, row.names=FALSE)
+           write.csv(values[["DF"]], file, row.names=FALSE)
          }
   )
 })
