@@ -102,12 +102,12 @@ shinyServer(function(input, output, session) {
      rhandsontable(DF, useTypes = FALSE, stretchH = "all", rowHeaders = NULL) %>%
       hot_col("species", type="autocomplete", source=speclist) %>%
       hot_col("region", type="dropdown", source=regions) %>%
-      hot_col("biomass", type="numeric", readOnly = TRUE, format= '0.00000') %>%
-      hot_col("carbon", type="numeric", readOnly = TRUE, format="0.00000") %>%
-      hot_col("co2", type="numeric", readOnly = TRUE, format="0.00000") %>%
-      hot_col("biomassg", type="numeric", readOnly = TRUE, format="0.00000") %>%
-      hot_col("carbong", type="numeric", readOnly = TRUE, format="0.00000") %>%
-      hot_col("co2g", type="numeric", readOnly = TRUE, format="0.00000")
+      hot_col("biomass", type="numeric", readOnly = TRUE, format= '0.0000') %>%
+      hot_col("carbon", type="numeric", readOnly = TRUE, format="0.0000") %>%
+      hot_col("co2", type="numeric", readOnly = TRUE, format="0.0000") %>%
+      hot_col("biomassg", type="numeric", readOnly = TRUE, format="0.0000") %>%
+      hot_col("carbong", type="numeric", readOnly = TRUE, format="0.0000") %>%
+      hot_col("co2g", type="numeric", readOnly = TRUE, format="0.0000")
   })
   
   output$download_table <- downloadHandler(
