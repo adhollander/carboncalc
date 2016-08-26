@@ -25,14 +25,14 @@ shinyUI(fluidPage(
       tabPanel("Biomass/Growth", 
         fluidRow(
           column(7,
-          rHandsontableOutput("hot", width=900, height=300),
+          rHandsontableOutput("hot", height=300),
           br(),
           actionButton("calc_results", "Calculate!"),
           br(),
           flowLayout(
           downloadButton("download_table", "Download Table"),
           fileInput("uploadedsheet", "Upload Spreadsheet"))),
-        column(5, wellPanel(h2("Intro text"))))),
+        column(5, h2("Intro text")))),
       tabPanel("Buildings", h2("Building stuff")),
       tabPanel("Future growth", h2("Future tree characteristics")),
       tabPanel("Future energy", h2("Future building energy characteristics")),
