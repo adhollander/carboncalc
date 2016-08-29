@@ -24,15 +24,22 @@ shinyUI(fluidPage(
   tabsetPanel(
       tabPanel("Biomass/Growth", 
         fluidRow(
-          column(7,
-          rHandsontableOutput("hot", height=300),
+          column(12, h2("Introduction"),
+                 p("The Urban Forestry Carbon Calculator is designed to help urban foresters estimate climate change benefits from their trees."))),
+        fluidRow(
           br(),
-          actionButton("calc_results", "Calculate!"),
-          br(),
-          flowLayout(
-          downloadButton("download_table", "Download Table"),
-          fileInput("uploadedsheet", "Upload Spreadsheet"))),
-        column(5, h2("Intro text")))),
+          column(12, rHandsontableOutput("hot", height=300, width=900))),
+        fluidRow(
+          column(1, actionButton("calc_results", "Calculate!")),
+          column(2, offset=1,
+             verticalLayout(
+              downloadButton("download_table", "Download Table"),
+              fileInput("uploadedsheet", "Upload Spreadsheet"))),
+          column(7, offset=1,
+             verticalLayout(
+               checkboxInput("future_values", "Compute future values"),
+               numericInput("num_years", "Number of years", value=10, min=0, max=100)
+             )))),
       tabPanel("Buildings", h2("Building stuff")),
       tabPanel("Future growth", h2("Future tree characteristics")),
       tabPanel("Future energy", h2("Future building energy characteristics")),
