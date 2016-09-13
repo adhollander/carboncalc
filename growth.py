@@ -357,9 +357,11 @@ def biomass_diff2(dbconn, speccode, region, dbh, ht, rounded=False, lower_bound=
     
     if curr_age >= appsmaxage:
         if minmaxtype == 'dbh':
-            dbh = appsmax
+#            dbh = appsmax
+            dbh = appsmax - 0.0001
         else:
-            ht = appsmax            
+#            ht = appsmax
+            ht = appsmax - 0.0001            
     if curr_age <= appsminage or prev_age < appsminage:
         if minmaxtype == 'dbh':
             prev_dbh = appsmin
@@ -439,12 +441,13 @@ def biomass_diff2(dbconn, speccode, region, dbh, ht, rounded=False, lower_bound=
     # the results table sets the CO2 sequestration to the carbon stored in this minimum limiting case.
     # not quite -- if prev_biomass fails (negative age e.g.), the calc blows up
 
-    if curr_age >= appsmaxage:
-        return (curr_biomass[0], curr_biomass[1], 0.0)
-    elif abs(curr_biomass[0] - prev_biomass[0]) <= 1e-02:
-        return (curr_biomass[0], curr_biomass[1], curr_biomass[2])
-    else:
-        return (curr_biomass[0]-prev_biomass[0], curr_biomass[1]-prev_biomass[1], curr_biomass[2]-prev_biomass[2])
+    #if curr_age >= appsmaxage:
+        #return (curr_biomass[0], curr_biomass[1], 0.0)
+    #elif abs(curr_biomass[0] - prev_biomass[0]) <= 1e-02:
+        #return (curr_biomass[0], curr_biomass[1], curr_biomass[2])
+    #else:
+        #return (curr_biomass[0]-prev_biomass[0], curr_biomass[1]-prev_biomass[1], curr_biomass[2]-prev_biomass[2])
+    return (curr_biomass[0]-prev_biomass[0], curr_biomass[1]-prev_biomass[1], curr_biomass[2]-prev_biomass[2])
 
 def inv_age_calc(dbconn, speccode, region, age, comptype):
     """Compute dbh or height given age."""
