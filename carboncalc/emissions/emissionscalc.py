@@ -1,7 +1,7 @@
-from emissions.models import BuildingClasses, AzimuthClasses, DbhClassesInterp, Palms, Energylong2, AppsMax, MaxCoolHeat, EmisFactorsCooling, EmisFactorsHeating
+from emissions.models import BuildingClasses, AzimuthClasses, DbhClassesInterp, Palms, Energylong2, AppsMax, MaxCoolHeat, EmisFactorsCooling, EmisFactorsHeating, SpeciesMaster
 from django.db.models import Q
 
-def energycalc(spcode, climatezone, dbh_orig, height, azimuth, distance, vintage, shade_reduction, lu_conversion_shade, lu_conversion_climate, eqpt_cooling_potential, eqpt_heating_potential):
+def energycalc(spcode0, climatezone, dbh_orig, height, azimuth, distance, vintage, shade_reduction, lu_conversion_shade, lu_conversion_climate, eqpt_cooling_potential, eqpt_heating_potential):
     error_factor = 0.7
     dbh_orig = float(dbh_orig)
     height = float(height)
@@ -13,6 +13,13 @@ def energycalc(spcode, climatezone, dbh_orig, height, azimuth, distance, vintage
     lu_conversion_climate = float(lu_conversion_climate)
     eqpt_cooling_potential = float(eqpt_cooling_potential)
     eqpt_heating_potential = float(eqpt_heating_potential)
+    
+    # Forgot we have to do species assignments for many of the species out there
+    spcode = SpeciesMaster.objects.filter(Q(speciescode=spcode0) & Q(region=climatezone))[0].growth_assign
+    # Need a double lookup for the species with initial growth assignments like 'BEM OTHER'
+    if 'OTHER' in spcode:
+        spcode = SpeciesMaster.objects.filter(Q(speciescode=spcode) & Q(region=climatezone))[0].growth_assign
+
     
     palmlist = [palm.sp_code for palm in Palms.objects.all()]
 
