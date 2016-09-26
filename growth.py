@@ -357,11 +357,9 @@ def biomass_diff2(dbconn, speccode, region, dbh, ht, rounded=False, lower_bound=
     
     if curr_age >= appsmaxage:
         if minmaxtype == 'dbh':
-#            dbh = appsmax
             dbh = appsmax - 0.0001
         else:
-#            ht = appsmax
-            ht = appsmax - 0.0001            
+            ht = appsmax - 0.0001          
     if curr_age <= appsminage or prev_age < appsminage:
         if minmaxtype == 'dbh':
             prev_dbh = appsmin
@@ -371,6 +369,8 @@ def biomass_diff2(dbconn, speccode, region, dbh, ht, rounded=False, lower_bound=
         else:
             prev_ht = appsmin
             prev_dbh = dbh
+        prev_age = appsminage
+        curr_age = appsminage + 1
     else:
         try:
             (eqn, eqtype, eqstr, a, b, c, d, e, AppsMin, AppsMax) = growth_calc_eqn2(dbconn, speccode, region, 'd.b.h.') 
@@ -441,12 +441,12 @@ def biomass_diff2(dbconn, speccode, region, dbh, ht, rounded=False, lower_bound=
     # the results table sets the CO2 sequestration to the carbon stored in this minimum limiting case.
     # not quite -- if prev_biomass fails (negative age e.g.), the calc blows up
 
-    #if curr_age >= appsmaxage:
-        #return (curr_biomass[0], curr_biomass[1], 0.0)
+#    if curr_age >= appsmaxage:
+#        return (curr_biomass[0], curr_biomass[1], 0.0)
     if abs(curr_biomass[0] - prev_biomass[0]) <= 1e-02:
         return (curr_biomass[0], curr_biomass[1], curr_biomass[2])
-    #else:
-        #return (curr_biomass[0]-prev_biomass[0], curr_biomass[1]-prev_biomass[1], curr_biomass[2]-prev_biomass[2])
+#    else:
+#        return (curr_biomass[0]-prev_biomass[0], curr_biomass[1]-prev_biomass[1], curr_biomass[2]-prev_biomass[2])
     else:
         return (curr_biomass[0]-prev_biomass[0], curr_biomass[1]-prev_biomass[1], curr_biomass[2]-prev_biomass[2])
 
@@ -496,6 +496,36 @@ def growth_coeffs_min_max(dbconn, tol=1e-04):
     """A few records fail to get values assigned (i.e. stay at 0,500). I manually adjust these
     using the GrowthResults table"""
                     
-                
+def inv_age_calc2(dbconn, speccode, region, age):
+    """Return both dbh and height as a function of age."""
+    qstr = "SELECT b.EqnName FROM SpeciesCodeList a, VolBioCoeffs b WHERE a.BioMassAssign = b.SpecCode AND a.SpeciesCode = '%s' AND a.Region = '%s'" % (speccode, region)
+    c = dbconn.cursor()
+    c.execute(qstr)
+    qresult = c.fetchone()
+    (eqn2) = qresult
+    minmaxtype = biomass.minmaxtypedict[eqn2[0]]
+    if minmaxtype == 'dbh':
+        comptype = 'd.b.h.'
+    else:
+        comptype = 'tree ht'
+    #print "eqn: ", eqn2[0], "minmaxtype: ", minmaxtype
+    (eqn, eqtype, eqstr, a, b, c, d, e, AppsMin, AppsMax) = growth_calc_eqn2(dbconn, speccode, region, comptype)
+    #print "eqn: ", eqn, "eqtype: ", eqtype,  "a: ", a, "b: ", b, "c: ", c, "d: ", d, "e: ", e
+    currval = eqn(age, a, b, c, d, e)
+    if currval < AppsMin:
+        currval = AppsMin
+    if currval > AppsMax:
+        currval = AppsMax
+    if comptype == 'd.b.h.':
+        (eqn2, eqtype2, eqstr2, a2, b2, c2, d2, e2, AppsMin2, AppsMax2) = growth_calc_eqn2(dbconn, speccode, region, 'tree ht')
+        newval = eqn2(currval, a2, b2, c2, d2, e2)
+        newdbh = currval
+        newht = newval
+    else:
+        #(eqn2, eqtype2, eqstr2, a2, b2, c2, d2, e2, AppsMin2, AppsMax2) = growth_calc_eqn2(dbconn, speccode, region, 'd.b.h.')
+        #newval = eqn2(currval, a2, b2, c2, d2, e2)
+        newht = currval
+        newdbh = None
+    return (newdbh, newht, eqtype, AppsMin, AppsMax)
                 
                 

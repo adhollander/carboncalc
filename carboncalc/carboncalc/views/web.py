@@ -10,7 +10,7 @@ def jumbotest(request):
     return HttpResponse(template.render({}, request))
 
 def biomass(request):
-    template = loader.get_template('biomass.html')
+    template = loader.get_template('biomass2.html')
     return HttpResponse(template.render({'regions': regionlist, 'species': speclist}, request))
 
 

@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 from biomass import biomass_calc
-from growth import biomasstoCO2, inv_age_calc, age_calc2, biomass_diff2
+from growth import biomasstoCO2, inv_age_calc, age_calc2, biomass_diff2, inv_age_calc2
 from emissions.emissionscalc import energycalc
 import sqlite3
 import json
@@ -45,7 +45,7 @@ def biomasscalcreq(reqparams, dbconn):
         pass
     if len(errorlist) == 0:
         try:
-            biomassresult = biomass_calc(dbconn, speccode=species, region=region, dbh=dbh, ht=height)
+            biomassresult = biomass_calc(dbconn, speccode=species, region=region, dbh=dbh, ht=height, useminmax=True)
         except:
             errorlist.append('Biomass calculation error')
     return(biomassresult, errorlist, dbh, height, species, region)
@@ -122,6 +122,46 @@ def biomasstoCO2req(request):
  
 @api_view(['GET', 'POST'])
 @parser_classes((JSONParser,))
+# commented out cause it refers to old version of inv_age_calc
+#def invagecalc(request):
+    #dbconn = sqlite3.connect(UrbForDB)
+    #if request.method == 'GET':
+        #dbconn = sqlite3.connect(UrbForDB)
+        #try:
+            #species = request.query_params['spec']
+            #region = altregion(request.query_params['region'])
+            #age = float(request.query_params['age'])
+            #comptype = request.query_params['comptype']
+            #(currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
+            #return Response({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+            ##return Response({'currval': currval, 'eqtype': eqtype, 'appsmin': appsmin, 'appsmax': appsmax})
+        #except:
+            #return Response({'errors': ['Inverse age calculation error']})
+    #elif request.method == 'POST':
+        #if type(request.data) is list:
+            #outlist = []          
+            #for item in request.data:
+                #try:
+                    #species = item['spec']
+                    #altregion(region = item['region'])
+                    #age = float(item['age'])
+                    #comptype = item['comptype']
+                    #(currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
+                    #outlist.append({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+                #except:
+                    #outlist.append({'errors': ['Inverse age calculation error']})
+            #return Response(outlist)
+        #elif type(request.data) is dict:
+            #try:
+                #species = request.data['spec']
+                #altregion(region = request.data['region'])
+                #age = float(request.data['age'])
+                #comptype = request.data['comptype']
+                #(currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
+                #return Response({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+            #except:
+                #return Response({'errors': ['Inverse age calculation error']}) 
+ #       pass
 def invagecalc(request):
     dbconn = sqlite3.connect(UrbForDB)
     if request.method == 'GET':
@@ -130,9 +170,8 @@ def invagecalc(request):
             species = request.query_params['spec']
             region = altregion(request.query_params['region'])
             age = float(request.query_params['age'])
-            comptype = request.query_params['comptype']
-            (currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
-            return Response({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+            (dbh, ht, eqtype, AppsMin, AppsMax) = inv_age_calc2(dbconn, species, region, age)
+            return Response({'dbh': dbh, 'ht': ht, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
             #return Response({'currval': currval, 'eqtype': eqtype, 'appsmin': appsmin, 'appsmax': appsmax})
         except:
             return Response({'errors': ['Inverse age calculation error']})
@@ -144,9 +183,8 @@ def invagecalc(request):
                     species = item['spec']
                     altregion(region = item['region'])
                     age = float(item['age'])
-                    comptype = item['comptype']
-                    (currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
-                    outlist.append({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+                    (dbh, ht, eqtype, AppsMin, AppsMax) = inv_age_calc2(dbconn, species, region, age)
+                    outlist.append({'dbh': dbh, 'ht': ht, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
                 except:
                     outlist.append({'errors': ['Inverse age calculation error']})
             return Response(outlist)
@@ -155,12 +193,12 @@ def invagecalc(request):
                 species = request.data['spec']
                 altregion(region = request.data['region'])
                 age = float(request.data['age'])
-                comptype = request.data['comptype']
-                (currval, eqtype, AppsMin, AppsMax) = inv_age_calc(dbconn, species, region, age, comptype)
-                return Response({'currval': currval, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
+                (dbh, ht, eqtype, AppsMin, AppsMax) = inv_age_calc2(dbconn, species, region, age)
+                return Response({'dbh': dbh, 'ht': ht, 'eqtype': eqtype, 'AppsMin': AppsMin, 'AppsMax': AppsMax})
             except:
                 return Response({'errors': ['Inverse age calculation error']}) 
  #       pass
+ 
  
 @api_view(['GET', 'POST'])
 @parser_classes((JSONParser,))
