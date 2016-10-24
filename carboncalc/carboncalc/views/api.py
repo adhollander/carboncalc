@@ -426,3 +426,108 @@ def avoidedemissions(request):
             except:
                 return Response({'errors': ['Avoided emissions calculation error']}) 
 
+"""Return an array of dicts giving tree biomass, CO2 etc. given inputted age."""
+def futuretreegrowth(spec, region, age, nyrs):
+    dbconn = sqlite3.connect(UrbForDB)
+    errorlist = []
+    treearr = []
+    try:
+        age = float(age)
+    except ValueError:
+        errorlist.append('Invalid age')
+    try:
+        nyrs = int(nyrs)
+    except ValueError:
+        errorlist.append('Invalid number of future years')
+    if spec not in speclist:
+        errorlist.append('Invalid species')
+    if region not in regionlist:
+        errorlist.append('Invalid region')
+    if not isinstance(age, (int, float)):
+        errorlist.append('Invalid age')
+    elif age <= 0:
+        errorlist.append('Invalid age')
+    if not isinstance(nyrs, int):
+        errorlist.append('Invalid number of future years')
+    elif nyrs <= 0:
+        errorlist.append('Invalid number of future years')
+    if len(errorlist) == 0:
+        treearr = [{'age': age + t, 'dbh': None, 'ht': None, 'biomass': None, 'carbon': None, 'co2': None} for t in range(nyrs+1)]
+        for i in range(nyrs+1):
+            currage = treearr[i]['age']
+            invage = inv_age_calc2(dbconn, spec, region, currage)
+            currdbh = invage[0]
+            currht = invage[1]
+            treearr[i]['dbh'] = currdbh
+            treearr[i]['ht'] = currht
+            bcalc = biomass_calc(dbconn, spec, region, currdbh, currht)
+            treearr[i]['biomass'] = bcalc[0]
+            treearr[i]['carbon'] = bcalc[1]
+            treearr[i]['co2'] = bcalc[2]
+    return (errorlist, treearr)
+
+"""Return an array of dicts giving tree biomass, CO2 etc given starting dbh/ht and number of years."""     
+def futuretreegrowthsize(spec, region, dbh, ht, nyrs):
+    dbconn = sqlite3.connect(UrbForDB)
+    try:
+        eqtype = inv_age_calc2(dbconn, spec, region, 20)[2]
+        if eqtype == 'dbh':
+            comptype = "d.b.h."
+        else:
+            comptype = "tree_ht"
+        currage = age_calc2(dbconn, spec, region, dbh, ht, rounded=False, lower_bound=0, upper_bound=100, comptype=comptype)
+        (errorlist, treearr) = futuretreegrowth(spec,region, currage, nyrs)
+    except:
+       (errorlist, treearr) =  (['Tree growth calculation error'], [])
+    return (errorlist, treearr)
+
+# let's get an api for this now. 
+@api_view(['GET', 'POST'])
+@parser_classes((JSONParser,))   
+def futuretree(request):
+    if request.method == 'GET':
+        try:
+            species = request.query_params['spec']
+            region = altregion(request.query_params['region'])
+            age = float(request.query_params['age'])
+            nyears = int(request.query_params['nyrs'])
+            (errorlist, treearr) = futuretreegrowth(species, region, age, nyears)
+            if len(errorlist) > 0:
+                return Response({'errors': errorlist}) 
+            else:
+                return Response({'futuretree': treearr})
+            #return Response({'currval': currval, 'eqtype': eqtype, 'appsmin': appsmin, 'appsmax': appsmax})
+        except Exception as e:
+            return Response({'errors': ['Inverse age calculation error']})
+            #return Response({'errors': [str(e)]})
+    elif request.method == 'POST':
+        if type(request.data) is list:
+            outlist = []          
+            for item in request.data:
+                try:
+                    species = item['spec']
+                    region = altregion(item['region'])
+                    age = float(item['age'])
+                    nyears = int(item['nyrs'])
+                    (errorlist, treearr) = futuretreegrowth(species, region, age, nyears)
+                    if len(errorlist) > 0:
+                        outlist.append({'errors': errorlist}) 
+                    else:
+                        outlist.append({'futuretree': treearr})                   
+                except:
+                    outlist.append({'errors': ['Inverse age calculation error']})
+            return Response(outlist)
+        elif type(request.data) is dict:
+            try:
+                species = request.data['spec']
+                region = altregion(request.data['region'])
+                age = float(request.data['age'])
+                nyears = int(request.data['nyrs'])
+                (errorlist, treearr) = futuretreegrowth(species, region, age, nyears)
+                if len(errorlist) > 0:
+                    return Response({'errors': errorlist}) 
+                else:
+                    return Response({'futuretree': treearr})
+            except:
+                return Response({'errors': ['Inverse age calculation error']}) 
+
