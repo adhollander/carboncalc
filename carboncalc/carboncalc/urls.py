@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^api/growth', views.api.biomassdiff),
     url(r'^api/avoided', views.api.avoidedemissions),
     url(r'^api/futureage', views.api.futuretree),
+    url(r'^api/futuresize', views.api.futuretreesize),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

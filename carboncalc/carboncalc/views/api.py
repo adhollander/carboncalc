@@ -498,7 +498,7 @@ def futuretree(request):
                 return Response({'futuretree': treearr})
             #return Response({'currval': currval, 'eqtype': eqtype, 'appsmin': appsmin, 'appsmax': appsmax})
         except Exception as e:
-            return Response({'errors': ['Inverse age calculation error']})
+            return Response({'errors': ['Future tree growth calculation error']})
             #return Response({'errors': [str(e)]})
     elif request.method == 'POST':
         if type(request.data) is list:
@@ -515,7 +515,7 @@ def futuretree(request):
                     else:
                         outlist.append({'futuretree': treearr})                   
                 except:
-                    outlist.append({'errors': ['Inverse age calculation error']})
+                    outlist.append({'errors': ['Future tree growth calculation error']})
             return Response(outlist)
         elif type(request.data) is dict:
             try:
@@ -529,5 +529,57 @@ def futuretree(request):
                 else:
                     return Response({'futuretree': treearr})
             except:
-                return Response({'errors': ['Inverse age calculation error']}) 
+                return Response({'errors': ['Future tree growth calculation error']}) 
+                
+@api_view(['GET', 'POST'])
+@parser_classes((JSONParser,))   
+def futuretreesize(request):
+    if request.method == 'GET':
+        try:
+            species = request.query_params['spec']
+            region = altregion(request.query_params['region'])
+            dbh = float(request.query_params['dbh'])
+            ht = float(request.query_params['ht'])
+            nyears = int(request.query_params['nyrs'])
+            (errorlist, treearr) = futuretreegrowthsize(species, region, dbh, ht, nyears)
+            if len(errorlist) > 0:
+                return Response({'errors': errorlist}) 
+            else:
+                return Response({'futuretree': treearr})
+            #return Response({'currval': currval, 'eqtype': eqtype, 'appsmin': appsmin, 'appsmax': appsmax})
+        except Exception as e:
+            return Response({'errors': ['Future tree growth calculation error']})
+            #return Response({'errors': [str(e)]})
+    elif request.method == 'POST':
+        if type(request.data) is list:
+            outlist = []          
+            for item in request.data:
+                try:
+                    species = item['spec']
+                    region = altregion(item['region'])
+                    dbh = float(item['dbh'])
+                    ht = float(item['ht'])
+                    nyears = int(item['nyrs'])
+                    (errorlist, treearr) = futuretreegrowthsize(species, region, dbh, ht, nyears)
+                    if len(errorlist) > 0:
+                        outlist.append({'errors': errorlist}) 
+                    else:
+                        outlist.append({'futuretree': treearr})                   
+                except:
+                    outlist.append({'errors': ['Future tree growth calculation error']})
+            return Response(outlist)
+        elif type(request.data) is dict:
+            try:
+                species = request.data['spec']
+                region = altregion(request.data['region'])
+                dbh = float(request.data['dbh'])
+                ht = float(request.data['ht'])
+                nyears = int(request.data['nyrs'])
+                (errorlist, treearr) = futuretreegrowthsize(species, region, dbh, ht, nyears)
+                if len(errorlist) > 0:
+                    return Response({'errors': errorlist}) 
+                else:
+                    return Response({'futuretree': treearr})
+            except:
+                return Response({'errors': ['Future tree growth calculation error']}) 
 
