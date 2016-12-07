@@ -4,8 +4,8 @@ Created on Fri Apr 18 13:06:05 2014
 
 @author: adh
 
-Urban forest calculator:
-Calculate carbon added in previous year.
+Urban forest calculator: Calculate carbon added in previous year.
+
 """
 
 import biomass
@@ -23,49 +23,51 @@ co2_fraction = 3.67
 dbconn = sqlite3.connect(UrbForDB)
 
 def equation_loglogw1(x, a, b, c, d, e):
+    """Equation form for loglogw1 """
     return exp(a + b * log(log(x+1) + (c/2)))
     
-#==============================================================================
-# def equation_loglogw2(x, a, b, c, d, e):
-#     return exp(a + b * log(log(x+1) + sqrt(x * c/2)))
-#==============================================================================
-    
 def equation_loglogw2(x, a, b, c, d, e):
+    """Equation form for loglogw2 """
     return exp(a + b * log(log(x+1)) + (sqrt(x) * (c/2)))
     
-#==============================================================================
-# def equation_loglogw3(x, a, b, c, d, e):
-#     return exp(a + b * log(log(x+1) + x * c/2))
-#==============================================================================
-    
 def equation_loglogw3(x, a, b, c, d, e):
+    """Equation form for loglogw3 """
     return exp(a + b * log(log(x+1)) + x * c/2)
     
 def equation_loglogw4(x, a, b, c, d, e):
+    """Equation form for loglogw4 """
     return exp(a + b * log(log(x+1))+ x * x * c/2)
     
 def equation_lin(x, a, b, c=0, d=0, e=0):
+    """Equation form for lin """
     return a + b*x
 
 def equation_quad(x, a, b, c, d=0, e=0):
+    """Equation form for quad """
     return a + b*x + c*x*x
     
 def equation_cub(x, a, b, c, d, e):
+    """Equation form for cub """
     return a + b*x + c*x*x + d*x*x*x
     
 def equation_quart(x, a, b, c, d, e):
+    """Equation form for quart """
     return  a + b*x + c*x*x + d*x*x*x + e*x*x*x*x
 
 def equation_expow1(x, a, b, c, d, e):
+    """Equation form for expow1 """
     return exp(a + b*x + c/2)
 
 def equation_expow2(x, a, b, c, d, e):
+    """Equation form for expow2 """
     return  exp(a + b*x + sqrt(x)*c/2)
     
 def equation_expow3(x, a, b, c, d, e):
+    """Equation form for expow3 """
     return  exp(a + b*x + x*c/2)
     
 def equation_expow4(x, a, b, c, d, e):
+    """Equation form for expow4 """
     return  exp(a + b*x + x*x*c/2)
      
 eqn_lookup = {'lin1/age^2': equation_lin, 'quad1/age^2': equation_quad, 
@@ -117,6 +119,7 @@ eqsolver_lookup = {'lin1/age^2': 'brentq', 'quad1/age^2': 'fsolve',
               'loglog1': 'brentq'}
 
 def root_form(fn, y0):
+    """Returns rewritten equation fn to find root at y value y0"""
     def fn2(x, a=0, b=0, c=0, d=0, e=0):
         return fn(x, a, b, c, d, e) - y0
     return fn2
@@ -129,6 +132,7 @@ def root_form(fn, y0):
 # Let's try a different solver.
 
 def find_eqn_root(fn, y0, eqstr, a, b, c, d, e, lower_bound, upper_bound):
+    """Finds root of equation fn at y value y0. """
     #tol = 0.001
     #step = 0.1
     fn2 = root_form(fn, y0)
@@ -149,6 +153,7 @@ def find_eqn_root(fn, y0, eqstr, a, b, c, d, e, lower_bound, upper_bound):
     return x0
 
 def nfloat(s):
+    """Return floating point value of s if possible, None if not"""
     if not s == None:
         try:
             return float(s)
@@ -159,13 +164,13 @@ def nfloat(s):
 
 
 def growth_calc_species(dbconn, speccode, region):
+    """Returns species growth assignment type given species speccode and region code"""
     qstr = "SELECT GrowthAssign FROM SpeciesCodeList WHERE SpeciesCode = '%s' AND Region = '%s'" % (speccode, region)
     c = dbconn.cursor()
     c.execute(qstr)
     qresult = c.fetchone()
     (growthspecies0) = qresult
     growthspecies = growthspecies0[0]
-    #print growthspecies
     if "OTHER" in growthspecies:
         qstr = "SELECT GrowthAssign FROM SpeciesCodeList WHERE SpeciesCode = '%s' AND Region = '%s'" % (growthspecies, region)
         c.execute(qstr)
@@ -194,6 +199,7 @@ def growth_calc_species(dbconn, speccode, region):
 #==============================================================================
     
 def growth_calc_eqn2(dbconn, speccode, region, comptype):
+    """Returns equation form and parameters given species code and region."""
     growthspecies = growth_calc_species(dbconn, speccode, region)
     c = dbconn.cursor()
     if comptype == 'd.b.h.':
@@ -317,7 +323,23 @@ def age_calc2(dbconn, speccode, region, dbh, ht, rounded, lower_bound, upper_bou
 #==============================================================================
 
 def biomass_diff2(dbconn, speccode, region, dbh, ht, rounded=False, lower_bound=0, upper_bound=100):
-    """Return increase in biomass between current year and previous year."""
+    """Return increase in biomass between current year and previous year.
+    
+    Args:
+    dbconn - database connection handle
+    speccode - species code
+    region - region code
+    dbh - Tree dbh in cm
+    ht - Tree height in m
+    rounded - Are ages rounded to the nearest year?
+    lower_bound - lower age bound (not used)
+    upper_bound - upper age bound (not used)
+    
+    Returns:
+    (difference between current and previous years' biomass,
+     difference between current and previous years' carbon,
+     difference between current and previous years' CO2 equivalent)
+    """
     c = dbconn.cursor()
         # need to use growth_species calc here. good thing I have a function.
     growthspecies = growth_calc_species(dbconn, speccode, region)
@@ -457,10 +479,11 @@ def inv_age_calc(dbconn, speccode, region, age, comptype):
     return (currval, eqtype, AppsMin, AppsMax)
     
 def biomasstoCO2(biomass0):
+    """Compute CO2 equivalent for biomass value."""
     return (biomass0 * biomass.carbon_fraction / biomass.roots)  * biomass.co2_fraction 
 
-"""Print out table giving dbh/ht values for particular ages..."""
 def growth_age_table(dbconn, speccode, region):
+    """Print out table giving dbh/ht values for particular ages..."""
     (eqn, eqtype, eqstr, a, b, c, d, e, AppsMin, AppsMax) = growth_calc_eqn2(dbconn, speccode, region)
     for age in range(0,151):
         print age, eqn(age, a, b, c, d, e)

@@ -2,6 +2,72 @@ from emissions.models import BuildingClasses, AzimuthClasses, DbhClassesInterp, 
 from django.db.models import Q
 
 def energycalc(spcode0, climatezone, dbh_orig, height, azimuth, distance, vintage, shade_reduction, lu_conversion_shade, lu_conversion_climate, eqpt_cooling_potential, eqpt_heating_potential):
+    """Calculates avoided emissions values given tree and building relationship data.
+    
+    Args: 
+    spcode0 - species code
+    climatezone - climate region code
+    dbh_orig - tree dbh in inches
+    height - tree height in feet
+    azimuth - direction to the shaded building in degrees
+    distance - distance tree is from building in feet
+    vintage - the year the building was built
+    shade_reduction - shade reduction factor, accounting for the reduction 
+        in tree shading effects due to overlapping trees.
+    lu_conversion_shade - land use conversion shading factor. Multi-use 
+        buildings that share walls (e.g. multi-family residences) have reduced 
+        sensitivity to temperature reductions from trees. This factor varies 
+        by land use type, and represents the trees that are within the shading 
+        distance of 60 feet. 
+    lu_conversion_climate - land use conversion climate factor. Multi-use 
+        buildings that share walls (e.g. multi-family residences) have reduced 
+        sensitivity to temperature reductions from trees. This factor varies 
+        by land use type, and represents the trees that are beyond the shading 
+        distance of 60 feet.  
+    eqpt_cooling_potential - equivalent cooling potential. This is a factor 
+        reducing the cooling transfer function by the degree of saturation 
+        of air conditioning in a particular combination of land use and 
+        climate zones. 
+    eqpt_heating_potential - equivalent heating potential. This is a factor 
+        reducing the heating transfer function by the degree of saturation 
+        of heating equipment in a particular combination of land use 
+        and climate zones.
+        
+    Return values (given in results tuple):
+    spcode - species code
+    climatezone - geographic region
+    dbh_orig - tree DBH in inches
+    dbh_calc - tree DBH in inches used in calculation 
+    height - tree height in feet
+    max_dbh - maximum tree DBH in inches
+    distance - distance tree is from building in feet
+    building_lookup_class - distance class building falls within
+    azimuth_lookup_class - cardinal direction to building
+    vintage_lookup_class - building vintage, one of 3 classes
+    ef_cooling_subset.co2_avg_emis_factor_kg_kwh_field - CO2 emissions factor relating 
+        kWh to CO2 equivalent
+    cooling_total_ctcc - total cooling emissions reductions in kWh without including 
+        reduction factors (CTCC=CUFR Tree Carbon Calculator)
+    cooling_total - total cooling emissions reductions in kWh including all reduction 
+        factors (e.g. shadereduc)
+    heating_total_ctcc - total heating emissions reductions in MBtu without including 
+        reduction factors
+    heating_total - total heating emissions reductions in MBtu including all 
+        reduction factors
+    all_cooling_emis_ctcc - total cooling emissions reductions in kg CO2 equivalents 
+        without including reduction factors.. Note that these incorporate methane and nitrous oxide CO2 equivalents in addition to actual CO2 emissions)
+    all_heating_emis_ctcc - total cooling emissions reductions in kg CO2 equivalents 
+        including all reduction factors
+    all_heating_emis_ctcc - total heating emissions reductions in kg CO2 equivalents 
+        without including reduction factors
+    all_heating_emis - total heating emissions reductions in kg CO2 equivalents 
+        including all reduction factors
+    all_emis_ctcc - total emissions reductions in kg CO2 equivalents without 
+        including reduction factors
+    all_emis - total emissions reductions in kg CO2 equivalents including 
+        all reduction factors 
+
+    """
     error_factor = 0.7
     dbh_orig = float(dbh_orig)
     height = float(height)

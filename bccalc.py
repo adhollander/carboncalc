@@ -28,7 +28,6 @@ for line in lines[1:]:
         speccode = larr[4].strip().replace('\"','')
         dbh = float(larr[5])
         height = float(larr[6])
-    # John, it would have helped if you kept the number of fields the same...
     #print speccode,climatezone,dbh,height
     fout.write("%s," % (line.strip()))
     try:

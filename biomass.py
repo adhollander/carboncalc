@@ -2,13 +2,16 @@
 """
 Biomass Urban Forestry calculator.
 
+Calculates biomass, carbon, and equivalent CO2 for a tree given the species,
+region, dbh, and height.
 """
 import sqlite3
 from math import exp, log, log10
 
 import growth
 
-UrbForDB = "/home/adh/UrbanForests/UrbanForestCC.sqlite"
+# alter depending on install path.
+UrbForDB = "/home/adh/UrbanForests/UrbanForestCC.sqlite" 
 
 roots = 0.78
 carbon_fraction = 0.5
@@ -20,6 +23,7 @@ dbconn = sqlite3.connect(UrbForDB)
 # in the below how do I handle TypeError: 'NoneType' object is not iterable?
 
 def equation_dw12(dbconn, speccode, biomassassign, dbh, ht):
+    """ Equation form: a * (dbh^b) * c. """
     qstr = "SELECT a, b FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -31,6 +35,7 @@ def equation_dw12(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
 
 def equation_dw13(dbconn, speccode, biomassassign, dbh, ht):
+    """ Equation form:  (a*ht+b)+(c*ht+d) """
     qstr = "SELECT a, b, c, d FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -42,6 +47,7 @@ def equation_dw13(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
 
 def equation_dw14(dbconn, speccode, biomassassign, dbh, ht):
+    """ Equation form:  (exp(a+b*(ln(dbh)))+exp(c+d*(ln(dbh))) """
     qstr = "SELECT a, b, c, d FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -53,6 +59,7 @@ def equation_dw14(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
 
 def equation_dw15(dbconn, speccode, biomassassign, dbh, ht):
+    """ Equation form:  (exp(a+b*ln(dbh)))*c """
     qstr = "SELECT a, b FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -64,6 +71,7 @@ def equation_dw15(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
 
 def equation_dw16(dbconn, speccode, biomassassign, dbh, ht):
+    """  Equation form: a^(b+c*(log10(dbh^d))) """
     qstr = "SELECT a, b, c, d FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -75,6 +83,7 @@ def equation_dw16(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
     
 def equation_dw18(dbconn, speccode, biomassassign, dbh, ht):
+    """ Equation form: ((a + b * dbh + c * (dbh ^ d))-(e + f * dbh + g * (dbh ^ h))) """
     qstr = "SELECT a, b, c, d, e, f, g, h FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -86,6 +95,7 @@ def equation_dw18(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
     
 def equation_dw19(dbconn, speccode, biomassassign, dbh, ht):
+    """ Equation form:  a*((SGsp)dbh^2*ht)^c where SGsp = specific gravity for species."""
     qstr = "SELECT a, c FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -100,6 +110,7 @@ def equation_dw19(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
     
 def equation_dw20(dbconn, speccode, biomassassign, dbh, ht):
+    """ Equation form:  exp(a+b*log(dbh))-exp(c+(d/dbh)) """
     qstr = "SELECT a, b, c, d FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -111,6 +122,7 @@ def equation_dw20(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
     
 def equation_dw21(dbconn, speccode, biomassassign, dbh, ht):
+    """Equation form:  a*(dbh^b)-(exp(c+(d/dbh)) """
     qstr = "SELECT a, b, c, d FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -123,6 +135,7 @@ def equation_dw21(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
     
 def equation_dw22(dbconn, speccode, biomassassign, dbh, ht):
+    """Equation form:  exp(a+b*ln(dbh)) """
     qstr = "SELECT a, b FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -134,6 +147,7 @@ def equation_dw22(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
 
 def equation_dw23(dbconn, speccode, biomassassign, dbh, ht):
+    """Equation form: exp(a+b*ln(dbh)+c*ln(ht)+d*ln(e/f) """
     qstr = "SELECT a, b, c, d, f FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -148,6 +162,7 @@ def equation_dw23(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
     
 def equation_fw1(dbconn, speccode, biomassassign, dbh, ht):
+    """Equation form:  a*(dbh)^b """
     qstr = "SELECT a, b FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -162,6 +177,7 @@ def equation_fw1(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
     
 def equation_vol10(dbconn, speccode, biomassassign, dbh, ht):
+    """Equation form:  a*dbh^b*ht^c """
     qstr = "SELECT a, b, c FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -176,6 +192,7 @@ def equation_vol10(dbconn, speccode, biomassassign, dbh, ht):
     return (biomass, carbon, co2)
     
 def equation_vol11(dbconn, speccode, biomassassign, dbh, ht):
+    """Equation form:  a(b*(dbh/c)^d*(e*ht)^f) """
     qstr = "SELECT a, b, c, d, e, f FROM VolBioCoeffs WHERE SpecCode = '%s'" % (biomassassign)
     c = dbconn.cursor()
     c.execute(qstr)
@@ -205,6 +222,22 @@ minmaxtypedict = {'dw12': 'dbh', 'dw13': 'ht', 'dw14': 'dbh',
               'vol10': 'dbh', 'vol11': 'dbh'}
 
 def biomass_calc(dbconn, speccode, region, dbh=0, ht=0, useminmax=False, negcorrect=False):
+    """Calculate biomass, carbon, and CO2 equivalent given tree data.
+    
+    Args:
+    dbconn - database connection handle
+    speccode - species code
+    region - region code
+    dbh - tree dbh in cm
+    ht - tree height in m
+    useminmax - flag to limit dbh or height over which equations are applicable
+    negcorrect - iteration correction upwards if calculated biomass < 0
+    
+    Returns:
+    biomass - biomass of tree in kg
+    carbon - carbon stored by tree in kg
+    co2 - CO2 equivalent of tree biomass
+    """
     #qstr = "SELECT BiomassEqn FROM SpeciesCodeList WHERE SpeciesCode = '%s'" % (speccode)
     qstr = "SELECT b.EqnName, b.SpecCode FROM SpeciesCodeList a, VolBioCoeffs b WHERE a.BioMassAssign = b.SpecCode AND a.SpeciesCode = '%s' AND a.Region = '%s'" % (speccode, region)
     c = dbconn.cursor()
