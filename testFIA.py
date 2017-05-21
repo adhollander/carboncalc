@@ -3,6 +3,8 @@
 Created on Wed Aug 20 16:43:34 2014
 
 @author: adh
+
+Reads FIA_biomass.csv file and runs biomass calculations across it.
 """
 
 import biomass
