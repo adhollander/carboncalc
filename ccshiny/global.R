@@ -1,3 +1,5 @@
+# Initialize Shiny application with several datasets and global functions.
+
 library(httr)
 library(jsonlite)
 library(hash)
