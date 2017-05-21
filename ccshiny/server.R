@@ -1,12 +1,9 @@
-
-# This is the server logic for a Shiny web application.
-# You can find out more about building applications with Shiny here:
+# Server logic for preliminary interface to carbon calculator using R/Shiny.
 #
-# http://shiny.rstudio.com
 #
 
 library(shiny)
-library(rhandsontable)
+library(rhandsontable) # Used for spreadsheet interface to calculator
 
 treecols <- c("aww", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k")
 
