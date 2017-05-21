@@ -1,3 +1,5 @@
+# Create datasets for loading into Shiny application.
+
 library(hash)
 
 regionlist <- read.csv("/home/adh/UrbanForests/WebCalculator/urbantreecc/ccshiny/regions.csv")
