@@ -3,6 +3,8 @@
 Created on Tue Jun  3 13:18:57 2014
 
 @author: adh
+
+Pytest-based testing framework for biomass and growth calculator.
 """
 
 import growth, biomass
