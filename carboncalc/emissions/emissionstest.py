@@ -1,5 +1,8 @@
+# Tests energycalc function with data from previous analysis for Sacramento.
+
 from emissions.emissionscalc import energycalc
 import csv
+
 
 
 def testrun():

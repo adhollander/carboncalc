@@ -8,7 +8,8 @@ from api import regionlist, speclist
 def jumbotest(request):
     template = loader.get_template('jumbotron.html')
     return HttpResponse(template.render({}, request))
-
+    
+# Renders web page for testing API
 def biomass(request):
     template = loader.get_template('biomass2.html')
     return HttpResponse(template.render({'regions': regionlist, 'species': speclist}, request))
