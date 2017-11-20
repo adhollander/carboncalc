@@ -30,5 +30,46 @@ developed using the R/Shiny platform. All contents of this repository are releas
    growth.py. Additionally the API supports calculating avoided emissions reductions from trees shading buildings. The API is
    described in the file ccAPI.pdf. This application has been developed using the Django REST framework, and Django experience 
    is needed to install and run this API. 
+ 
+3. **Installation Outline**
+
+The following gives a overview of how to install the Django RESTful API.
+
+1. Create python virtual environment.
+
+    $ virtualenv carboncalc
+
+2. Install django in environment
+
+    $ cd carboncalc
+    $ source bin/activate
+    $ pip install django
+
+3. Get the carboncalc code from github
+
+e.g.
+    $ wget https://github.com/adhollander/carboncalc/archive/master.zip
+    $ unzip master.zip
+    $ cd carboncalc-master/carboncalc
+
+4. Install needed libraries.
+
+    $ pip install django-bootstrap3
+    $ pip install djangorestframework # is version 3 the right version?
+    $ pip install numpy
+    $ pip install scipy # need gfortran
+
+5. Copy carboncalc/settings_secret_template.py to carboncalc/settings_secret.py.
+
+6. Create a key for  settings_secret.py. One way to generate this is to use the Django key generator application at http://www.miniwebtool.com/django-secret-key-generator/. For test purposes, change DEBUG to True in  settings_secret.py.
+
+7. Create symlinks to biomass.py and growth.py in carboncalc-master to carboncalc-master/carboncalc/biomass.py and carboncalc-master/carboncalc/growth.py.
+
+8. Adjust pathnames in biomass.py and growth.py to  UrbanForestCC.sqlite file.
 
 
+
+9. Test the application with python manage.py runserver. (have this warning: You have 13 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions. 
+Run 'python manage.py migrate' to apply them settings_secret.py)
+
+10. Sample query: http://127.0.0.1:8000/api/bmasstoCO2?biomass=7.  See https://github.com/adhollander/carboncalc/blob/master/ccAPI.pdf for more queries.
