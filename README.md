@@ -6,7 +6,9 @@ benefits of individual urban trees given data on parameters such as tree species
 geographic region, tree diameter, and tree height. This work comes from a project funded by CalFire and the US Forest Service
 to assess the benefits of California's urban trees, and builds upon a set of allometric equations for urban tree growth published 
 as a USFS General Technical Report ([McPherson, Van Doorn, and Peper 2016](https://www.treesearch.fs.fed.us/pubs/52933)).
-A publication describing the California urban tree project is: McPherson, E. Gregory, Qingfu Xiao, Natalie S. van Doorn, John de Goede, Jacquelyn Bjorkman, Allan Hollander, Ryan M. Boynton, James F. Quinn, and James H. Thorne. 2017. “The Structure, Function and Value of Urban Forests in California Communities.” _Urban Forestry & Urban Greening_ 28 (Supplement C):43–53. https://doi.org/10.1016/j.ufug.2017.09.013.
+A publication describing the California urban tree project is: 
+
+> McPherson, E. Gregory, Qingfu Xiao, Natalie S. van Doorn, John de Goede, Jacquelyn Bjorkman, Allan Hollander, Ryan M. Boynton, James F. Quinn, and James H. Thorne. 2017. “The Structure, Function and Value of Urban Forests in California Communities.” _Urban Forestry & Urban Greening_ 28 (Supplement C):43–53. https://doi.org/10.1016/j.ufug.2017.09.013.
 
 
 There are three major pieces in this repository. The first is the core Python code (```biomass.py``` and ```growth.py``` connecting to the
