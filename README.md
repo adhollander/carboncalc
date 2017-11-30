@@ -10,7 +10,7 @@ as a USFS General Technical Report ([McPherson, Van Doorn, and Peper 2016](https
 There are three major pieces in this repository. The first is the core Python code (```biomass.py``` and ```growth.py``` connecting to the
 SQLite database ```UrbanForestCC.sqlite```) containing the functions for calculating tree biomass and growth. The second piece, 
 contained in the directory carboncalc, is a RESTful API for querying the core calculator code, written
-using the Django REST framework. This API is described in the document [ccAPI.pdf](https://github.com/adhollander/carboncalc/blob/master/ccAPI.pdf). Detailed instructions for installing and using 
+using the [Django REST framework](http://www.django-rest-framework.org/). This API is described in the document [ccAPI.pdf](https://github.com/adhollander/carboncalc/blob/master/ccAPI.pdf). Detailed instructions for installing and using 
 the code are given below. The third piece is contained in the directory ccshiny and is a prototype of a user interface to this API 
 developed using the R/Shiny platform. **All contents of this repository are released into the public domain.**
 
@@ -28,7 +28,7 @@ developed using the R/Shiny platform. **All contents of this repository are rele
    
    The files in the directory carboncalc contain the Python code for building a RESTful API to the functions in ```biomass.py``` and
    ```growth.py```. Additionally the API supports calculating avoided emissions reductions from trees shading buildings. The API is
-   described in the file [ccAPI.pdf](https://github.com/adhollander/carboncalc/blob/master/ccAPI.pdf). This application has been developed using the Django REST framework, and Django experience 
+   described in the file [ccAPI.pdf](https://github.com/adhollander/carboncalc/blob/master/ccAPI.pdf). This application has been developed using the [Django REST framework](http://www.django-rest-framework.org/), and Django experience 
    is needed to install and run this API. 
  
 ## Installation Outline
