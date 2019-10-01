@@ -16,7 +16,7 @@ from scipy.optimize import brentq, fsolve
 
 UrbForDB = "/home/adh/UrbanForests/UrbanForestCC.sqlite"
 
-roots = 0.78
+roots = 1.00
 carbon_fraction = 0.5
 co2_fraction = 3.67
 
@@ -56,7 +56,7 @@ def equation_quart(x, a, b, c, d, e):
 
 def equation_expow1(x, a, b, c, d, e):
     """Equation form for expow1 """
-    return exp(a + b*x + c/2)
+    return exp(a + b*x + c/10)
 
 def equation_expow2(x, a, b, c, d, e):
     """Equation form for expow2 """
